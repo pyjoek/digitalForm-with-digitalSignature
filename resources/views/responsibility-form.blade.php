@@ -6,6 +6,9 @@
   <title>Maalum Responsibility Form</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/signature_pad@4.0.0/dist/signature_pad.umd.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
   <style>
     body { background: #f8f9fa; }
     .form-card { max-width: 900px; margin: 2rem auto; }
@@ -18,8 +21,9 @@
   <div class="card shadow-sm">
     <div class="card-body p-4">
       
-      <h2>Maalum Responsibility Form</h2>
-      <p class="text-center"><strong>Please read carefully the content of this form before signing.</strong></p>
+      <h2>Maalum</h2>
+      <h2>Responsibility Form</h2>
+      <p class="text-center"><strong><h4>Please read carefully the content of this form before signing.</h4></strong></p>
 
       <p>In consideration for being allowed to access the Maalum Natural Swimming Pool and its facilities, the sufficiency of which is hereby acknowledged:</p>
       <ul>
@@ -37,42 +41,85 @@
 
       <p>All visitors of Maalum are requested to treat the facilities with respect and as intended. We kindly ask you to report any observed defect and any accidents, immediately.</p>
 
-      <p><strong>I have read and understood the terms mentioned above, and I am aware that by signing this form I agree to abide by the rules.</strong></p>
+      <p>I have read and understood the terms mentioned above, and I am aware that by signing this form I agree to abide by the rules.</p>
 
       {{-- Laravel Form --}}
-      <form method="POST" action="{{ route('form.submit') }}">
+      <form method="POST" action="{{ route('form.submit') }}" class="form-control">
         @csrf
-        <div class="mb-3">
-          <label class="form-label">Visitor's Name</label>
-          <input type="text" name="visitorName" class="form-control" required>
+        <div class="row">
+          <!-- Booking Name Input -->
+          <div class="mb-3 col-6">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="fa-solid fa-user"></i>
+              </span>
+              <input type="text" class="form-control" name="visitorName" placeholder="Booking Name" required>
+            </div>
+          </div>
+
+          <!-- Supervisor Name Input -->
+          <div class="mb-3 col-6">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="fa-solid fa-user-tie"></i>
+              </span>
+              <input type="text" class="form-control" name="supervisorName" placeholder="Supervisor Name" required>
+            </div>
+          </div>
+
+        <!-- Row with Phone and Email Inputs -->
+        <div class="row">
+          <!-- Phone Number -->
+          <div class="mb-3 col-md-6">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="fa-solid fa-phone"></i>
+              </span>
+              <input type="text" name="contactInfo" class="form-control" placeholder="Phone Number" required>
+            </div>
+          </div>
+
+          <!-- Email Address -->
+          <div class="mb-3 col-md-6">
+            <div class="input-group">
+              <span class="input-group-text">
+                <i class="fa-solid fa-envelope"></i>
+              </span>
+              <input type="email" name="email" class="form-control" placeholder="Email Address" required>
+            </div>
+          </div>
         </div>
 
-        <div class="mb-3">
-          <label class="form-label">Signature</label>
+        <!-- Signature Field (Centered) -->
+        <div class="mb-3 d-flex justify-content-center">
+          <div style="width: 300px; text-align: center;">
+            <!-- Icon Label -->
+            <div class="form-label mb-2">
+              <i class="fa-solid fa-pen"></i> Signature
+            </div>
+
+            <!-- Signature Canvas -->
+            <canvas id="signature-pad" class="border rounded w-100" height="150" style="touch-action: none;"></canvas>
+
+            <!-- Hidden Input -->
+            <input type="hidden" name="signature" id="signatureInput" required>
+
+            <!-- Clear Button -->
+            <button type="button" class="btn btn-sm btn-outline-secondary mt-2" onclick="clearSignature()">Clear</button>
+          </div>
+        </div>
+
+        <!-- <div class="mb-3">
+          <label class="form-label col-4">Signature</label>
           <canvas id="signature-pad" class="w-400"></canvas>
-          <input type="hidden" name="signature" id="signatureInput">
+          <input type="hidden" name="signature" id="signatureInput" required>
           <button type="button" class="btn btn-sm btn-outline-secondary mt-1" onclick="clearSignature()">Clear</button>
-        </div>
+        </div> -->
 
-        <div class="mb-3">
-          <label class="form-label">Adult Supervisor</label>
-          <input type="text" name="supervisorName" class="form-control">
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Email or WhatsApp</label>
-          <input type="text" name="contactInfo" class="form-control" required>
-        </div>
-
-        <div class="mb-3">
-          <label class="form-label">Date</label>
-          <input type="date" name="date" class="form-control" required>
-        </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <center><button type="submit" class="btn btn-primary col-6 mb-5">Submit</button></center>
       </form>
 
-      <hr class="mt-4">
+      <!-- <hr class="mt-4"> -->
       <p class="text-center"><strong>WE HOPE YOU ENJOY YOUR TIME AT MAALUM NATURAL SWIMMING POOL!</strong></p>
     </div>
   </div>
