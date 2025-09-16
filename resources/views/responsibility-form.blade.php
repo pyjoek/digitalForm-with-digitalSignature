@@ -49,7 +49,7 @@
 
         <div class="mb-3">
           <label class="form-label">Signature</label>
-          <canvas id="signature-pad" class="w-100"></canvas>
+          <canvas id="signature-pad" class="w-400"></canvas>
           <input type="hidden" name="signature" id="signatureInput">
           <button type="button" class="btn btn-sm btn-outline-secondary mt-1" onclick="clearSignature()">Clear</button>
         </div>
